@@ -353,14 +353,14 @@ public abstract partial class SparkplugApplicationBase<T> : SparkplugBase<T> whe
                     break;
             }
 
-            if (this.Options.MqttTlsOptions is not null)
-            {
-                builder.WithTlsOptions(this.Options.MqttTlsOptions);
-            }
-            else
-            {
-                builder.WithTlsOptions(o => o.UseTls());
-            }
+            //if (this.Options.MqttTlsOptions is not null)
+            //{
+            //    builder.WithTlsOptions(this.Options.MqttTlsOptions);
+            //}
+            //else
+            //{
+            //    builder.WithTlsOptions(o => o.UseTls());
+            //}
 
             if (this.Options.MqttWebSocketOptions is null)
             {

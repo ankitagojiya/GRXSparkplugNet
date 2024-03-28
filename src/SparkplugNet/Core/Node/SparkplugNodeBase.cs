@@ -291,14 +291,14 @@ public abstract partial class SparkplugNodeBase<T> : SparkplugBase<T> where T : 
                 break;
         }
 
-        if (this.Options.MqttTlsOptions is not null)
-        {
-            builder.WithTlsOptions(this.Options.MqttTlsOptions);
-        }
-        else
-        {
-            builder.WithTlsOptions(o => o.UseTls());
-        }
+        //if (this.Options.MqttTlsOptions is not null)
+        //{
+        //    builder.WithTlsOptions(this.Options.MqttTlsOptions);
+        //}
+        //else
+        //{
+        //    builder.WithTlsOptions(o => o.UseTls());
+        //}
 
         if (this.Options.MqttWebSocketOptions is null)
         {

@@ -65,7 +65,8 @@ public sealed class SparkplugApplication : SparkplugApplicationBase<Metric>
             this.NameSpace,
             groupIdentifier,
             edgeNodeIdentifier,
-            this.KnownMetricsStorage.FilterMetrics(metrics, SparkplugMessageType.NodeCommand),
+            metrics,
+            //this.KnownMetricsStorage.FilterMetrics(metrics, SparkplugMessageType.NodeCommand),
             this.LastSequenceNumber,
             this.LastSessionNumber,
             DateTimeOffset.UtcNow);
