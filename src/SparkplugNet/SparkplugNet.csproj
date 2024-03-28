@@ -6,17 +6,17 @@
         <RootNamespace>SparkplugNet</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <PackageId>SparkplugNet</PackageId>
-        <Authors>SeppPenner</Authors>
-        <Company>Hämmer Electronics</Company>
-        <Copyright>Copyright © Hämmer Electronics</Copyright>
+        <PackageId>GRXSparkplugNet</PackageId>
+        <Authors>GRX</Authors>
+        <Company></Company>
+        <Copyright></Copyright>
         <Description>SparkplugNet is a library to use the Sparkplug IIoT standard in .Net.</Description>
         <PackageTags>c# csharp sparkplug mqtt</PackageTags>
-        <PackageProjectUrl>https://www.nuget.org/packages/SparkplugNet/</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/SeppPenner/SparkplugNet</RepositoryUrl>
+        <PackageProjectUrl></PackageProjectUrl>
+        <RepositoryUrl></RepositoryUrl>
         <PackageIcon>Icon.png</PackageIcon>
         <RepositoryType>Github</RepositoryType>
-        <PackageReleaseNotes>Version 1.3.7.0 (2024-03-27): Fixed logic to get sesssion number metric, fixes https://github.com/SeppPenner/SparkplugNet/issues/91; Changed order of the test code to have event handlers defined BEFORE anything else happens; Reworked MQTT options, fixes https://github.com/SeppPenner/SparkplugNet/issues/83; Added option to do a node rebirth from code, fixes https://github.com/SeppPenner/SparkplugNet/issues/44.</PackageReleaseNotes>
+        <PackageReleaseNotes></PackageReleaseNotes>
         <PackageLicenseFile>License.txt</PackageLicenseFile>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
@@ -28,6 +28,8 @@
         <NoWarn>NU1803,CS0618,CS0809,NU1901,NU1902</NoWarn>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <NuGetAuditMode>all</NuGetAuditMode>
+        <Version>1.0.0</Version>
+        <Product>GRXSparkplugNet</Product>
     </PropertyGroup>
 
     <ItemGroup>

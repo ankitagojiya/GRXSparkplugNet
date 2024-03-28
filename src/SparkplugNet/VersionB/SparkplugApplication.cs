@@ -150,20 +150,20 @@ public sealed class SparkplugApplication : SparkplugApplicationBase<Metric>
     {
         // Filter out session number metric.
         var sessionNumberMetric = payload.Metrics.FirstOrDefault(m => m.Name == Constants.SessionNumberMetricName);
-        var metricsWithoutSequenceMetric = payload.Metrics.Where(m => m.Name != Constants.SessionNumberMetricName);
-        var filteredMetrics = this.KnownMetricsStorage.FilterMetrics(metricsWithoutSequenceMetric, topic.MessageType).ToList();
+        var metricsWithoutSequenceMetric = payload.Metrics.Where(m => m.Name != Constants.SessionNumberMetricName).ToList();
+        //var filteredMetrics = this.KnownMetricsStorage.FilterMetrics(metricsWithoutSequenceMetric, topic.MessageType).ToList();
 
-        if (sessionNumberMetric is not null)
-        {
-            filteredMetrics.Add(sessionNumberMetric);
-        }
+        //if (sessionNumberMetric is not null)
+        //{
+        //    filteredMetrics.Add(sessionNumberMetric);
+        //}
 
         // Handle messages.
         switch (topic.MessageType)
         {
             case SparkplugMessageType.NodeBirth:
                 await this.FireNodeBirthReceived(topic.GroupIdentifier, topic.EdgeNodeIdentifier,
-                    this.ProcessPayload(topic, filteredMetrics, SparkplugMetricStatus.Online));
+                    this.ProcessPayload(topic, metricsWithoutSequenceMetric, SparkplugMetricStatus.Online));
                 break;
             case SparkplugMessageType.DeviceBirth:
                 if (string.IsNullOrWhiteSpace(topic.DeviceIdentifier))
@@ -172,10 +172,10 @@ public sealed class SparkplugApplication : SparkplugApplicationBase<Metric>
                 }
 
                 await this.FireDeviceBirthReceived(topic.GroupIdentifier, topic.EdgeNodeIdentifier, topic.DeviceIdentifier,
-                    this.ProcessPayload(topic, filteredMetrics, SparkplugMetricStatus.Online));
+                    this.ProcessPayload(topic, metricsWithoutSequenceMetric, SparkplugMetricStatus.Online));
                 break;
             case SparkplugMessageType.NodeData:
-                var nodeDataMetrics = this.ProcessPayload(topic, filteredMetrics, SparkplugMetricStatus.Online);
+                var nodeDataMetrics = this.ProcessPayload(topic, metricsWithoutSequenceMetric, SparkplugMetricStatus.Online);
                 await this.FireNodeDataReceived(topic.GroupIdentifier, topic.EdgeNodeIdentifier, nodeDataMetrics);
                 break;
             case SparkplugMessageType.DeviceData:
@@ -184,11 +184,11 @@ public sealed class SparkplugApplication : SparkplugApplicationBase<Metric>
                     throw new InvalidOperationException($"Topic {topic} is invalid!");
                 }
 
-                var deviceDataMetrics = this.ProcessPayload(topic, filteredMetrics, SparkplugMetricStatus.Online);
+                var deviceDataMetrics = this.ProcessPayload(topic, metricsWithoutSequenceMetric, SparkplugMetricStatus.Online);
                 await this.FireDeviceDataReceived(topic.GroupIdentifier, topic.EdgeNodeIdentifier, topic.DeviceIdentifier, deviceDataMetrics);
                 break;
             case SparkplugMessageType.NodeDeath:
-                this.ProcessPayload(topic, filteredMetrics, SparkplugMetricStatus.Offline);
+                this.ProcessPayload(topic, metricsWithoutSequenceMetric, SparkplugMetricStatus.Offline);
                 await this.FireNodeDeathReceived(topic.GroupIdentifier, topic.EdgeNodeIdentifier, sessionNumberMetric);
                 break;
             case SparkplugMessageType.DeviceDeath:
@@ -197,7 +197,7 @@ public sealed class SparkplugApplication : SparkplugApplicationBase<Metric>
                     throw new InvalidOperationException($"Topic {topic} is invalid!");
                 }
 
-                this.ProcessPayload(topic, filteredMetrics, SparkplugMetricStatus.Offline);
+                this.ProcessPayload(topic, metricsWithoutSequenceMetric, SparkplugMetricStatus.Offline);
                 await this.FireDeviceDeathReceived(topic.GroupIdentifier, topic.EdgeNodeIdentifier, topic.DeviceIdentifier);
                 break;
         }
