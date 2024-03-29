@@ -69,7 +69,8 @@ public sealed class SparkplugNode : SparkplugNodeBase<Metric>
             this.NameSpace,
             this.Options.GroupIdentifier,
             this.Options.EdgeNodeIdentifier,
-            this.KnownMetricsStorage.FilterMetrics(metrics, SparkplugMessageType.NodeData),
+            metrics,
+            //this.KnownMetricsStorage.FilterMetrics(metrics, SparkplugMessageType.NodeData),
             this.LastSequenceNumber,
             this.LastSessionNumber,
             DateTimeOffset.UtcNow);
