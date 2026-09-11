@@ -28,7 +28,7 @@
         <NoWarn>NU1803,CS0618,CS0809,NU1901,NU1902</NoWarn>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <NuGetAuditMode>all</NuGetAuditMode>
-        <Version>1.1.0</Version>
+        <Version>1.2.0</Version>
         <Product>GRXSparkplugNet</Product>
     </PropertyGroup>
 
@@ -42,7 +42,7 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="MQTTnet" Version="4.3.3.952" />
+        <PackageReference Include="MQTTnet" Version="4.3.7.1207" />
         <PackageReference Include="protobuf-net" Version="3.2.30" />
     </ItemGroup>
 
